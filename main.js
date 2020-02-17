@@ -13,8 +13,19 @@
 
   function employee (name,salary){
     return {
-      name: name,
-      salary: salary
+      sayMyName:function(){
+        return name;
+      },
+      sayHello:function(){
+        return 'hello '+name;
+      },
+      increaseSalary:function(n){
+        return 'your salary is '+(salary+n)+'$';
+      },
+      addFriend:function(object){
+        return 'you just become friend with '+object.sayMyName();
+        //not finished it return only one name ,i tried to save this result and when our function is another time is invoked we should add 'and' than the second name 
+      }
     }   
   }
 
@@ -53,7 +64,7 @@
 //=============================================================================
   //lets create a pet class using OOP concept,
   // a - we need to create the pets (lets create only one for now), the invocation should take the name of the pet. 
-
+   
   // var pet1 = Pet("doggy");
 
   // b - we need function to add the other info for the pet, called addInfo function. Make sure your functions unneeded memory space
@@ -66,13 +77,49 @@
 
   // f- in order to change the state of the pet, create a function called changeState, when called it will make the pet avaliablity true,
   //    and when called again it will make it false.
+ function Pet(initial){
+   var pet={};
+     pet.name=initial;
+     pet.age;
+     pet.owner;
+     pet.gender;
+     pet.species;
+     pet.addInfo=addInfo;
+     pet.increaseAge=increaseAge;
+     pet.availability=false;
+     pet.checkState=checkState;
+     pet.changeState=changeState;
+     return pet
+ }
+var addInfo=function(age, owner, gender, species){
+  this.age=age;
+  this.owner=owner;
+  this.gender=gender;
+  this.species=species;
+  return this
+}
 
+var increaseAge=function(n){
+  return this.age=this.age+n ;
+}
 
-  // Write your code here .....
+var checkState=function(){
+  if(this.availability===true){
+    return true;
+  }
+  return false;
+}
 
+var changeState=function(){
+  if(this.availability===true){
+    return this.availability===false;
+  }else{
+    this.availability===true;
+  }
+}
 
   // Now, to make sure that you are actually reading, make a comment below this and type: Yes I am
-
+  //  yes I am 
 //=============================================================================
 /*                                  Q3                                       */
 //=============================================================================
@@ -101,7 +148,16 @@ function reduce(array, f, acc) {
 
 // Use the updated version of reduce to write a function max that returns the maximum number in an array of numbers. 
 
-// Write your code here .....
+// we leave the start part of our reduce function empty(so the start is undefined),so the reduce function will take array[0 ]like it's start]
+
+function maximum(array){
+  return reduce(array, function(start,element){
+    if(start<element){
+      start=element;
+    }
+    return start;
+  })
+}
 
 
 
