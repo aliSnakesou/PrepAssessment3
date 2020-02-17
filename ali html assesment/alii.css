@@ -1,0 +1,13 @@
+body{
+  background-color: aqua;
+}
+
+header{
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+
+input{
+  width: 100%;
+  height: 60 px;
+}
