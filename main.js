@@ -11,23 +11,41 @@
 //==============================================================================
 //lets make an employee profile using closures
 
-  function employee (name,salary){
-    return {
-      sayMyName:function(){
-        return name;
-      },
-      sayHello:function(){
-        return 'hello '+name;
-      },
-      increaseSalary:function(n){
-        return 'your salary is '+(salary+n)+'$';
-      },
-      addFriend:function(object){
-        return 'you just become friend with '+object.sayMyName();
-        //not finished it return only one name ,i tried to save this result and when our function is another time is invoked we should add 'and' than the second name 
+function employee(name, salary) {
+  var name = name;
+  var salary = salary;
+  var array = [];
+  return {
+    sayMyName: function () {
+      return name;
+    },
+    sayHello: function () {
+      return "hello " + name;
+    },
+    increaseSalary: function (n) {
+      salary = salary + n;
+      return "your salary is " + salary + "$";
+    },
+    addFriend: function (object) {
+      var str = ""
+      if (!(array.includes(object.sayMyName()))) {
+        array.push(object.sayMyName());
       }
-    }   
+      str = "you just became a friend with " + array[0];
+      for (var i = 1; i < array.length; i++) {
+        str = str + " and " + array[i];
+      }
+      return str;
+    },
+    listFriends: function () {
+      if (array.length === 1) {
+        return "you have one friend.";
+      }
+      return "you have " +array.length+ " friends.";
+    }
   }
+}
+
 
   var employeeA = employee("jack", 100);
   var employeeB = employee("Mark", 200);
@@ -77,47 +95,33 @@
 
   // f- in order to change the state of the pet, create a function called changeState, when called it will make the pet avaliablity true,
   //    and when called again it will make it false.
- function Pet(initial){
-   var pet={};
-     pet.name=initial;
-     pet.age;
-     pet.owner;
-     pet.gender;
-     pet.species;
-     pet.addInfo=addInfo;
-     pet.increaseAge=increaseAge;
-     pet.availability=false;
-     pet.checkState=checkState;
-     pet.changeState=changeState;
-     return pet
- }
-var addInfo=function(age, owner, gender, species){
-  this.age=age;
-  this.owner=owner;
-  this.gender=gender;
-  this.species=species;
-  return this
-}
-
-var increaseAge=function(n){
-  return this.age=this.age+n ;
-}
-
-var checkState=function(){
-  if(this.availability===true){
-    return true;
+  function Pet(petName) {
+    var petty = {};
+    petty.avaibility = false,
+    petty.addInfo = addInfo,
+    petty.increaseAge = increaseAge,
+    petty.checkState = checkState,
+    petty.changeState = changeState
+    return petty;
   }
-  return false;
-}
-
-var changeState=function(){
-  if(this.availability===true){
-    return this.availability===false;
-  }else{
-    this.availability===true;
+  var addInfo = function(age, owner, gender, species) {
+    return {
+      age: age,
+      owner: owner,
+      gender: gender,
+      species: species
+    };
   }
-}
-
+  var increaseAge = function(n) {
+    return pet.age = pet.age + n;
+  }
+  var checkState = function() {
+    return this.avaibility;
+  }
+  var changeState = function() {
+    this.avaibility = !(this.avaibility);
+    return this.avaibility;
+  }
   // Now, to make sure that you are actually reading, make a comment below this and type: Yes I am
   //  yes I am 
 //=============================================================================
